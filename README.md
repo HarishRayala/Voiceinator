@@ -10,4 +10,4 @@
     <li>Ability to set the pitch and rate</li>
 </ol>
 
-<img src="./voicenatorui.jpg" />
+<img src="voicenatorui.jpg" />
