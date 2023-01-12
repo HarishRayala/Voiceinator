@@ -1,4 +1,4 @@
-## Voicenator
+## Voiceinator
 
 ## Voiceinator tool which is used to read the text in different languages in various styles of diction.
 
