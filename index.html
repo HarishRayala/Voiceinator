@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./index.css">
-    <title>Voiceinator</title>
-</head>
-<body>
-    <div class="voiceinator">
 
-        <h1>The Voiceinator 5000</h1>
-  
-        <select name="voice" id="voices">
-          <option value="">Select A Voice</option>
-        </select>
-  
-        <label for="rate">Rate:</label>
-        <input name="rate" type="range" min="0" max="3" value="1" step="0.1" id="rate">
-  
-        <label for="pitch">Pitch:</label>
-  
-        <input name="pitch" type="range" min="0" max="2" step="0.1" id="pitch">
-        <textarea name="text">Hello! I love JavaScript 👍</textarea>
-        <button id="stop">Stop!</button>
-        <button id="speak">Speak</button>
-  
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./index.css">
+  <title>Voiceinator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+  </style>
+</head>
+
+<body>
+  <div class="voiceinator">
+
+    <h1>The Voiceinator 5000</h1>
+
+    <select name="voice" id="voices">
+      <option value="">Select A Voice</option>
+    </select>
+
+    <label for="rate">Rate:</label>
+    <input name="rate" type="range" min="0" max="3" value="1" step="0.1" id="rate">
+
+    <label for="pitch">Pitch:</label>
+
+    <input name="pitch" type="range" min="0" max="2" step="0.1" id="pitch">
+    <textarea name="text">Hello! I love JavaScript 👍</textarea>
+    <button id="stop">Stop!</button>
+    <button id="speak">Speak</button>
+
+  </div>
 </body>
 <script>
   const msg = new SpeechSynthesisUtterance();
@@ -39,38 +44,39 @@
   //Your code goes here
   msg.lang = "en";
   speakButton.addEventListener("click", () => {
-  msg.text = document.querySelector("textarea").value;
-});
+    msg.text = document.querySelector("textarea").value;
+  });
 
-document.querySelector("#rate").addEventListener("input", () => {
-  const rate = document.querySelector("#rate").value;
-  msg.rate = rate;
-});
+  document.querySelector("#rate").addEventListener("input", () => {
+    const rate = document.querySelector("#rate").value;
+    msg.rate = rate;
+  });
 
-document.querySelector("#pitch").addEventListener("input", () => {
-  const pitch = document.querySelector("#pitch").value;
-  msg.pitch = pitch;
-});
+  document.querySelector("#pitch").addEventListener("input", () => {
+    const pitch = document.querySelector("#pitch").value;
+    msg.pitch = pitch;
+  });
 
-window.speechSynthesis.onvoiceschanged = () => {
-  voices = window.speechSynthesis.getVoices();
-  msg.voice = voices[0];
-  let voiceSelect = document.querySelector("#voices");
-  voices.forEach((voice, i) => (voiceSelect.options[i] = new Option(voice.name, i)));
-};
+  window.speechSynthesis.onvoiceschanged = () => {
+    voices = window.speechSynthesis.getVoices();
+    msg.voice = voices[0];
+    let voiceSelect = document.querySelector("#voices");
+    voices.forEach((voice, i) => (voiceSelect.options[i] = new Option(voice.name, i)));
+  };
 
-document.querySelector("#voices").addEventListener("change", () => {
-  msg.voice = voices[document.querySelector("#voices").value];
-});
+  document.querySelector("#voices").addEventListener("change", () => {
+    msg.voice = voices[document.querySelector("#voices").value];
+  });
 
-speakButton.addEventListener("click", () => {
-  msg.text = document.querySelector("textarea").value;
-  window.speechSynthesis.speak(msg);
-});
+  speakButton.addEventListener("click", () => {
+    msg.text = document.querySelector("textarea").value;
+    window.speechSynthesis.speak(msg);
+  });
 
 
-stopButton.addEventListener("click", () => {
-  window.speechSynthesis.cancel();
-});
+  stopButton.addEventListener("click", () => {
+    window.speechSynthesis.cancel();
+  });
 </script>
+
 </html>
